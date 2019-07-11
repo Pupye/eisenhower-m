@@ -13,17 +13,17 @@ class TabScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text('Your Tasks'),
           bottom: TabBar(tabs: <Widget>[
-            Tab(text: 'Important and urgent',),
-            Tab(icon: Icon(Icons.directions_transit),),
-            Tab(icon: Icon(Icons.directions_bike),),
-            Tab(icon: Icon(Icons.directions_car),), 
+            Tab(icon: Icon(Icons.flash_on),),
+            Tab(icon: Icon(Icons.lightbulb_outline),),
+            Tab(icon: Icon(Icons.av_timer),),
+            Tab(icon: Icon(Icons.cancel),), 
           ],),
         ),
       body: TabBarView(children: <Widget>[
-        TasksW(),
-        TasksW(),
-        TasksW(),
-        TasksW(), 
+        TasksW(type: 0),
+        TasksW(type: 1),
+        TasksW(type: 2),
+        TasksW(type: 3), 
       ],),
       ),
     );
