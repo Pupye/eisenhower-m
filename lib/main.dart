@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       home: ChangeNotifierProvider.value(
         value: m_tasks.Tasks(),
-        child: TabScreen(),
+        child: HomeScreen(),
       ),
     );
   }

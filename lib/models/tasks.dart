@@ -8,7 +8,7 @@ class Tasks with ChangeNotifier{
       id: 0, 
       title: 'start meditation',
       isFinished: false,  
-      type: 0
+      type: 1
     ),
     
     Task(
@@ -35,15 +35,15 @@ class Tasks with ChangeNotifier{
     Task(
       id: 4, 
       title: 'play video game',
-      isFinished: false,  
-      type: 3
+      isFinished: true,  
+      type: 1
     ),
 
     Task(
       id: 2, 
       title: 'write an email',
-      isFinished: false,  
-      type: 2
+      isFinished: true,  
+      type: 1
     ),
   ]; 
 

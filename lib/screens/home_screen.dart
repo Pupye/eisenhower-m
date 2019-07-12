@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/tasks_widget.dart';
+import '../widgets/tasks_overview_widget.dart';
 import '../models/tasks.dart' as m_tasks;
 
 class HomeScreen extends StatelessWidget {
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         title: Text('Home'),
       ),
       body: ChangeNotifierProvider.value(
-        child: TasksW(),
+        child: TasksOverViewW(),
         value: m_tasks.Tasks(),
       ),
     );
