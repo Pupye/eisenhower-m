@@ -12,31 +12,38 @@ class TaskOverViewW extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tasks = Provider.of<m_tasks.Tasks>(context).getWithType(type);
+    final tasks =
+        Provider.of<m_tasks.Tasks>(context).getNonFinishedWithType(type);
+
     return LayoutBuilder(
-        builder: (context, constraints) => Container(
-              child: Column(
-                children: <Widget>[
-                  Card(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 2.5),
-                            width: constraints.maxWidth * 0.8,
-                            height: constraints.maxHeight * 0.1,
-                            child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  title,
-                                  maxLines: 2,
-                                ))),
-                      ],
+        builder: (context, constraints) => GestureDetector(
+              onTap: () {
+                print('hello world');
+              },
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Card(
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 2.5),
+                              width: constraints.maxWidth * 0.8,
+                              height: constraints.maxHeight * 0.1,
+                              child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    title,
+                                    maxLines: 2,
+                                  ))),
+                        ],
+                      ),
                     ),
-                  ),
-                  ..._getTasks(tasks, constraints.maxHeight * 0.9),
-                ],
+                    ..._getTasks(tasks, constraints.maxHeight * 0.9),
+                  ],
+                ),
               ),
             ));
   }
@@ -45,16 +52,28 @@ class TaskOverViewW extends StatelessWidget {
     List<Widget> widgets = [];
 
     int counter = 0;
-    tasks.forEach((task) {
-      if (!task.isFinished && counter < 5) {
-        widgets.add(ChangeNotifierProvider.value(
-          value: task,
-          child: TaskItemsOverviewW(height: height),
-        ));
+    for (int i = 0; i < tasks.length; i++) {
+      widgets.add(ChangeNotifierProvider.value(
+        value: tasks[i],
+        child: TaskItemsOverviewW(height: height),
+      ));
       counter++;
+      if (counter == 5) {
+        break;
       }
-    });
-
+    }
+    if (widgets.length == 0) {
+      widgets.add(
+        Expanded(
+          child: Center(
+            child: Text(
+              'tap to add tasks',
+              style: TextStyle(color: Colors.black45),
+            ),
+          ),
+        ),
+      );
+    }
     return widgets;
   }
 }

@@ -55,6 +55,10 @@ class Tasks with ChangeNotifier{
     return _taskItems.where((task)=> task.type == type).toList();
   }
 
+  List<Task> getNonFinishedWithType(int type){
+    return _taskItems.where((task)=> task.type == type && !task.isFinished).toList(); 
+  }
+
   void addTask(Task t){
     _taskItems.add(t); 
     notifyListeners();
